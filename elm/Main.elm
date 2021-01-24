@@ -3,10 +3,20 @@ module Main exposing (..)
 import Browser exposing (Document)
 import Html exposing (text)
 
+type alias Model =
+    { page : Page
+    }
+
+
+type Msg
+    = ClickedLink Browser.UrlRequest
+
+
 main =
     Browser.application
         { init = init
         }
+
 
 init : Float -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init version url key =
