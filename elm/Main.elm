@@ -8,6 +8,12 @@ type alias Model =
     }
 
 
+type Page
+    = FoldersPage Folders.Model
+    | GalleryPage Gallery.Model
+    | NotFound
+
+
 type Msg
     = ClickedLink Browser.UrlRequest
 
