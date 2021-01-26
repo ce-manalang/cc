@@ -1,7 +1,9 @@
 module Main exposing (..)
 
 import Browser exposing (Document)
+import Browser.Navigation as Nav
 import Html exposing (text)
+import Url exposing (Url)
 
 type alias Model =
     { page : Page
@@ -9,9 +11,7 @@ type alias Model =
 
 
 type Page
-    = FoldersPage Folders.Model
-    | GalleryPage Gallery.Model
-    | NotFound
+    = NotFound
 
 
 type Msg
