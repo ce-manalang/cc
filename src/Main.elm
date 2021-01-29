@@ -15,6 +15,10 @@ type Page
     = NotFound
 
 
+type Route
+    = Stories
+
+
 type Msg
     = ClickedLink Browser.UrlRequest
 
