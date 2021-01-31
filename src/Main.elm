@@ -9,7 +9,7 @@ import Url.Parser as Parser exposing ((</>), Parser, s, string)
 type alias Model =
     { page : Page
     , key : Nav.Key
-    , version: Float
+    , version : Float
     }
 
 
@@ -32,15 +32,24 @@ parser =
         ]
 
 
+main : Program Float Model Msg
 main =
     Browser.application
         { init = init
+        , subscriptions = subscriptions
         }
 
 
 init : Float -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init version url key =
     updateUrl url { page = NotFound, key = key, version = version }
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    case model.page of
+        _ ->
+            Sub.none
 
 
 updateUrl : Url -> Model -> ( Model, Cmd Msg )
