@@ -25,6 +25,18 @@ type Msg
     = ClickedLink Browser.UrlRequest
 
 
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        ClickedLink urlRequest ->
+            case urlRequest of
+                Browser.External href ->
+                    ( model, Nav.load href )
+
+                Browser.Internal url ->
+                    ( model, Nav.pushUrl model.key (Url.toString url) )
+
+
 parser : Parser (Route -> a) a
 parser =
     Parser.oneOf
@@ -37,6 +49,7 @@ main =
     Browser.application
         { init = init
         , subscriptions = subscriptions
+        , update = update
         }
 
 
