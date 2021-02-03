@@ -74,6 +74,7 @@ viewFooter =
 
 type Msg
     = ClickedLink Browser.UrlRequest
+    | ChangedUrl Url
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -87,6 +88,9 @@ update msg model =
                 Browser.Internal url ->
                     ( model, Nav.pushUrl model.key (Url.toString url) )
 
+        ChangedUrl url ->
+            updateUrl url model
+
 
 parser : Parser (Route -> a) a
 parser =
@@ -99,6 +103,7 @@ main : Program Float Model Msg
 main =
     Browser.application
         { init = init
+        , onUrlChange = ChangedUrl
         , subscriptions = subscriptions
         , update = update
         , view = view
