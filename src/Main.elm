@@ -104,6 +104,7 @@ main =
     Browser.application
         { init = init
         , onUrlChange = ChangedUrl
+        , onUrlRequest = ClickedLink
         , subscriptions = subscriptions
         , update = update
         , view = view
