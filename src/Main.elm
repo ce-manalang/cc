@@ -126,5 +126,8 @@ subscriptions model =
 updateUrl : Url -> Model -> ( Model, Cmd Msg )
 updateUrl url model =
     case Parser.parse parser url of
+        Just _ ->
+            ( { model | page = NotFound }, Cmd.none )
+
         Nothing ->
             ( { model | page = NotFound }, Cmd.none )
