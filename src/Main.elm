@@ -4,6 +4,7 @@ import Browser exposing (Document)
 import Browser.Navigation as Nav
 import Html exposing (Html, a, footer, h1, li, nav, text, ul)
 import Html.Lazy exposing (lazy)
+import Home as Home
 import Url exposing (Url)
 import Url.Parser as Parser exposing ((</>), Parser, s, string)
 
@@ -15,7 +16,8 @@ type alias Model =
 
 
 type Page
-    = NotFound
+    = HomePage Home.Model
+    | NotFound
 
 
 type Route
@@ -27,6 +29,10 @@ view model =
     let
         content =
             case model.page of
+                HomePage folders ->
+                    Home.view folders
+                        |> Html.map GotHomeMsg
+
                 NotFound ->
                     text "Not Found"
     in
