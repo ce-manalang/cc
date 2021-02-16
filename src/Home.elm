@@ -1,3 +1,10 @@
 module Home exposing (Model, Msg, init, update, view)
 
-import Html exposing (..)
+init : Maybe String -> ( Model, Cmd Msg )
+init selectedFilename =
+    ( { initialModel | selectedPhotoUrl = selectedFilename }
+    , Http.get
+        { url = "http://elm-in-action.com/folders/list"
+        , expect = Http.expectJson GotInitialModel modelDecoder
+        }
+    )
