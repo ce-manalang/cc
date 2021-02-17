@@ -8,3 +8,6 @@ init selectedFilename =
         , expect = Http.expectJson GotInitialModel modelDecoder
         }
     )
+
+type Msg
+    = GotInitialModel (Result Http.Error Model)
