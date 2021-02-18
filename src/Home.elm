@@ -1,5 +1,11 @@
 module Home exposing (Model, Msg, init, update, view)
 
+import Html exposing (..)
+import Html.Attributes exposing (class, href, src)
+
+type alias Model =
+    {}
+
 init : Maybe String -> ( Model, Cmd Msg )
 init selectedFilename =
     ( { initialModel | selectedPhotoUrl = selectedFilename }
