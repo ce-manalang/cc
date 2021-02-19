@@ -1,7 +1,7 @@
 module Home exposing (Model, Msg, init, update, view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, href, src)
+import Http
 
 type alias Model =
     {}
