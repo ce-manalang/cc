@@ -17,3 +17,12 @@ init selectedFilename =
 
 type Msg
     = GotInitialModel (Result Http.Error Model)
+
+modelDecoder : Decoder Model
+modelDecoder =
+    Decode.map2
+        (\photos root ->
+            { photos = photos, root = root, selectedPhotoUrl = Nothing }
+        )
+        modelPhotosDecoder
+        folderDecoder
