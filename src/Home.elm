@@ -6,6 +6,10 @@ import Http
 type alias Model =
     {}
 
+initialModel : Model
+initialModel =
+    {}
+
 init : Maybe String -> ( Model, Cmd Msg )
 init selectedFilename =
     ( { initialModel | selectedPhotoUrl = selectedFilename }
