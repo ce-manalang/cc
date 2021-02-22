@@ -2,6 +2,7 @@ module Home exposing (Model, Msg, init, update, view)
 
 import Html exposing (..)
 import Http
+import Json.Decode as Decode exposing (Decoder, int, list, string)
 
 type alias Model =
     {}
