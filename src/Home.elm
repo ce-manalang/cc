@@ -23,6 +23,13 @@ init selectedFilename =
 type Msg
     = GotInitialModel (Result Http.Error Model)
 
+postDecoder : Decoder Post
+postDecoder =
+    Decode.succeed postFromJson
+        |> required "name" string
+        |> required "photos" photosDecoder
+        |> required "subfolders" (Decode.lazy (\_ -> list postDecoder))
+
 modelDecoder : Decoder Model
 modelDecoder =
     Decode.map2
@@ -30,4 +37,4 @@ modelDecoder =
             { photos = photos, root = root, selectedPhotoUrl = Nothing }
         )
         modelPhotosDecoder
-        folderDecoder
+        postDecoder
