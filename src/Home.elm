@@ -4,6 +4,12 @@ import Html exposing (..)
 import Http
 import Json.Decode as Decode exposing (Decoder, int, list, string)
 
+type Post
+    = Post
+        { name : String
+        , postUrls : List String
+        }
+
 type alias Model =
     {}
 
@@ -12,10 +18,10 @@ initialModel =
     {}
 
 init : Maybe String -> ( Model, Cmd Msg )
-init selectedFilename =
-    ( { initialModel | selectedPhotoUrl = selectedFilename }
+init selectedPost =
+    ( { initialModel | selectedPostUrl = selectedPost }
     , Http.get
-        { url = "http://elm-in-action.com/folders/list"
+        { url = "https://centimentalcomics.com/index.json"
         , expect = Http.expectJson GotInitialModel modelDecoder
         }
     )
@@ -27,14 +33,13 @@ postDecoder : Decoder Post
 postDecoder =
     Decode.succeed postFromJson
         |> required "name" string
-        |> required "photos" photosDecoder
-        |> required "subfolders" (Decode.lazy (\_ -> list postDecoder))
+        |> required "posts" postsDecoder
 
 modelDecoder : Decoder Model
 modelDecoder =
     Decode.map2
-        (\photos root ->
-            { photos = photos, root = root, selectedPhotoUrl = Nothing }
+        (\posts root ->
+            { posts = posts, root = root, selectedPostUrl = Nothing }
         )
-        modelPhotosDecoder
+        modelPostsDecoder
         postDecoder
