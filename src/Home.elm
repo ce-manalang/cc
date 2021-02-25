@@ -1,5 +1,6 @@
 module Home exposing (Model, Msg, init, update, view)
 
+import Dict exposing (Dict)
 import Html exposing (..)
 import Http
 import Json.Decode as Decode exposing (Decoder, int, list, string)
@@ -28,6 +29,11 @@ init selectedPost =
 
 type Msg
     = GotInitialModel (Result Http.Error Model)
+
+postsDecoder : Decoder (Dict String Post)
+postsDecoder =
+    Decode.keyValuePairs jsonPostDecoder
+        |> Decode.map fromPairs
 
 postDecoder : Decoder Post
 postDecoder =
