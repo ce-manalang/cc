@@ -30,6 +30,12 @@ init selectedPost =
 type Msg
     = GotInitialModel (Result Http.Error Model)
 
+fromPairs : List ( String, JsonPost ) -> Dict String Post
+fromPairs pairs =
+    pairs
+        |> List.map finishPost
+        |> Dict.fromList
+
 postsDecoder : Decoder (Dict String Post)
 postsDecoder =
     Decode.keyValuePairs jsonPostDecoder
