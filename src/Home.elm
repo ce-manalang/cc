@@ -30,6 +30,12 @@ init selectedPost =
 type Msg
     = GotInitialModel (Result Http.Error Model)
 
+type alias JsonPost =
+    { title : String
+    , size : Int
+    , relatedUrls : List String
+    }
+
 fromPairs : List ( String, JsonPost ) -> Dict String Post
 fromPairs pairs =
     pairs
