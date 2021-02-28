@@ -36,6 +36,13 @@ type alias JsonPost =
     , relatedUrls : List String
     }
 
+finishPost : ( String, JsonPost ) -> ( String, Post )
+finishPost ( url, json ) =
+    ( url
+    , { url = url
+      }
+    )
+
 fromPairs : List ( String, JsonPost ) -> Dict String Post
 fromPairs pairs =
     pairs
