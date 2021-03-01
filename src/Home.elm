@@ -54,6 +54,11 @@ postsDecoder =
     Decode.keyValuePairs jsonPostDecoder
         |> Decode.map fromPairs
 
+jsonPostDecoder : Decoder JsonPost
+jsonPostDecoder =
+    Decode.succeed JsonPost
+        |> required "title" string
+
 postDecoder : Decoder Post
 postDecoder =
     Decode.succeed postFromJson
