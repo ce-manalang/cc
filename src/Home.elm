@@ -66,6 +66,13 @@ postDecoder =
         |> required "name" string
         |> required "posts" postsDecoder
 
+postFromJson : String -> Dict String Post -> List Post -> Post
+postFromJson name posts =
+    Post
+        { name = name
+        , postUrls = Dict.keys posts
+        }
+
 modelDecoder : Decoder Model
 modelDecoder =
     Decode.map2
