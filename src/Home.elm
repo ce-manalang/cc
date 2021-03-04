@@ -73,6 +73,11 @@ postFromJson name posts =
         , postUrls = Dict.keys posts
         }
 
+modelPostsDecoder : Decoder (Dict String Post)
+modelPostsDecoder =
+    Decode.succeed modelPostsFromJson
+        |> required "posts" postsDecoder
+
 modelDecoder : Decoder Model
 modelDecoder =
     Decode.map2
