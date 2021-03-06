@@ -21,7 +21,7 @@ type Page
 
 
 type Route
-    = Stories
+    = Home
 
 
 view : Model -> Document Msg
@@ -29,8 +29,8 @@ view model =
     let
         content =
             case model.page of
-                HomePage folders ->
-                    Home.view folders
+                HomePage posts ->
+                    Home.view posts
                         |> Html.map GotHomeMsg
 
                 NotFound ->
