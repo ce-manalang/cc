@@ -3,6 +3,11 @@ module Home exposing (Model, Msg, init, update, view)
 type Msg
     = GotInitialModel (Result Http.Error Model)
 
+type alias Model =
+    { selectedPostUrl : Maybe String
+    , posts : Dict String Post
+    }
+
 init : Maybe String -> ( Model, Cmd Msg )
 init selectedTitle =
     ( { initialModel | selectedPostUrl = selectedTitle }
