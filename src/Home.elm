@@ -1,5 +1,7 @@
 module Home exposing (Model, Msg, init, update, view)
 
+import Dict exposing (Dict)
+
 type Msg
     = GotInitialModel (Result Http.Error Model)
 
