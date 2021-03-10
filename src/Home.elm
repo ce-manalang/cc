@@ -2,6 +2,15 @@ module Home exposing (Model, Msg, init, update, view)
 
 import Dict exposing (Dict)
 
+type alias Post =
+    { image_url : String
+    , image_alt : String
+    , post_url : String
+    , post_date : String
+    , post_title : String
+    , post_short_desc : String
+    }
+
 type Msg
     = GotInitialModel (Result Http.Error Model)
 
