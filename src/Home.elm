@@ -1,6 +1,7 @@
 module Home exposing (Model, Msg, init, update, view)
 
 import Dict exposing (Dict)
+import Http
 
 type alias Post =
     { image_url : String
