@@ -28,3 +28,12 @@ init selectedTitle =
         , expect = Http.expectJson GotInitialModel modelDecoder
         }
     )
+
+modelDecoder : Decoder Model
+modelDecoder =
+    Decode.map2
+        (\posts root ->
+            { posts = posts, root = root, selectedPostUrl = Nothing }
+        )
+        modelPostsDecoder
+        postDecoder
