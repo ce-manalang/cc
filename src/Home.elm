@@ -20,6 +20,13 @@ type alias Model =
     , posts : Dict String Post
     }
 
+initialModel : Model
+initialModel =
+    { selectedPostUrl = Nothing
+    , posts = Dict.empty
+    , root = Folder { name = "Loading...", postUrls = [] }
+    }
+
 init : Maybe String -> ( Model, Cmd Msg )
 init selectedTitle =
     ( { initialModel | selectedPostUrl = selectedTitle }
