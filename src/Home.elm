@@ -37,6 +37,11 @@ init selectedTitle =
         }
     )
 
+modelPostsDecoder : Decoder (Dict String Post)
+modelPostsDecoder =
+    Decode.succeed modelPostsFromJson
+        |> required "posts" postsDecoder
+
 modelDecoder : Decoder Model
 modelDecoder =
     Decode.map2
