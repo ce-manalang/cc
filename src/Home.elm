@@ -37,6 +37,11 @@ init selectedTitle =
         }
     )
 
+postDecoder : Decoder Post
+postDecoder =
+    Decode.succeed postFromJson
+        |> required "title" string
+
 modelPostsDecoder : Decoder (Dict String Post)
 modelPostsDecoder =
     Decode.succeed modelPostsFromJson
