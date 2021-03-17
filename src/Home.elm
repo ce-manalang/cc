@@ -47,6 +47,10 @@ modelPostsDecoder =
     Decode.succeed modelPostsFromJson
         |> required "posts" postsDecoder
 
+modelPostsFromJson : Dict String Post -> List (Dict String Post) -> Dict String Post
+modelPostsFromJson posts =
+    List.foldl Dict.union posts
+
 modelDecoder : Decoder Model
 modelDecoder =
     Decode.map2
