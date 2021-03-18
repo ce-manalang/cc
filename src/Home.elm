@@ -3,6 +3,7 @@ module Home exposing (Model, Msg, init, update, view)
 import Dict exposing (Dict)
 import Http
 import Json.Decode as Decode exposing (Decoder, int, list, string)
+import Json.Decode.Pipeline exposing (required)
 
 type alias Post =
     { image_url : String
