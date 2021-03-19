@@ -38,6 +38,11 @@ init selectedTitle =
         }
     )
 
+postsDecoder : Decoder (Dict String Post)
+postsDecoder =
+    Decode.keyValuePairs jsonPostDecoder
+        |> Decode.map fromPairs
+
 postDecoder : Decoder Post
 postDecoder =
     Decode.succeed postFromJson
