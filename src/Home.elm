@@ -48,6 +48,12 @@ postDecoder =
     Decode.succeed postFromJson
         |> required "title" string
 
+postFromJson : String -> Dict String Post -> List Post -> Post
+postFromJson title posts =
+    Post
+        { title = title
+        }
+
 modelPostsDecoder : Decoder (Dict String Post)
 modelPostsDecoder =
     Decode.succeed modelPostsFromJson
