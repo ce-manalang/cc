@@ -38,6 +38,10 @@ init selectedTitle =
         }
     )
 
+type alias JsonPost =
+    { title : String
+    }
+
 postsDecoder : Decoder (Dict String Post)
 postsDecoder =
     Decode.keyValuePairs jsonPostDecoder
