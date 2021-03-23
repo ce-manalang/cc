@@ -52,6 +52,12 @@ jsonPostDecoder =
     Decode.succeed JsonPost
         |> required "title" string
 
+fromPairs : List ( String, JsonPost ) -> Dict String Post
+fromPairs pairs =
+    pairs
+        |> List.map finishPost
+        |> Dict.fromList
+
 postDecoder : Decoder Post
 postDecoder =
     Decode.succeed postFromJson
