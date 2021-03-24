@@ -52,6 +52,14 @@ jsonPostDecoder =
     Decode.succeed JsonPost
         |> required "title" string
 
+finishPost : ( String, JsonPost ) -> ( String, Post )
+finishPost ( url, json ) =
+    (
+      { url = url
+      , title = json.title
+      }
+    )
+
 fromPairs : List ( String, JsonPost ) -> Dict String Post
 fromPairs pairs =
     pairs
