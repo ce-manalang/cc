@@ -26,7 +26,7 @@ initialModel : Model
 initialModel =
     { selectedPostUrl = Nothing
     , posts = Dict.empty
-    , root = Folder { name = "Loading...", postUrls = [] }
+    , root = Post { name = "Loading...", postUrls = [] }
     }
 
 init : Maybe String -> ( Model, Cmd Msg )
