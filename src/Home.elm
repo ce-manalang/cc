@@ -17,6 +17,18 @@ type alias Post =
 type Msg
     = GotInitialModel (Result Http.Error Model)
 
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        ClickPost url ->
+            ( { model | selectedPostUrl = Just url }, Cmd.none )
+
+        GotInitialModel (Ok newModel) ->
+            ( { newModel | selectedPostUrl = model.selectedPostUrl }, Cmd.none )
+
+        GotInitialModel (Err _) ->
+            ( model, Cmd.none )
+
 type alias Model =
     { selectedPostUrl : Maybe String
     , posts : Dict String Post
