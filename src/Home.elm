@@ -15,7 +15,8 @@ type alias Post =
     }
 
 type Msg
-    = GotInitialModel (Result Http.Error Model)
+    = ClickPost String
+    | GotInitialModel (Result Http.Error Model)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
