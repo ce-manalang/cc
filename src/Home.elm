@@ -55,7 +55,7 @@ init selectedTitle =
 view : Model -> Html Msg
 view model =
     let
-        photoByUrl : String -> Maybe Photo
+        photoByUrl : String -> Maybe Post
         photoByUrl url =
             Dict.get url model.photos
 
