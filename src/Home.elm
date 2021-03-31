@@ -31,6 +31,18 @@ update msg model =
         GotInitialModel (Err _) ->
             ( model, Cmd.none )
 
+viewSelectedPost : Photo -> Html Msg
+viewSelectedPost photo =
+    div
+        [ class "selected-photo" ]
+        [ h2 [] [ text photo.title ]
+        , img [ src (urlPrefix ++ "photos/" ++ photo.url ++ "/full") ] []
+        , span [] [ text (String.fromInt photo.size ++ "KB") ]
+        , h3 [] [ text "Related" ]
+        , div [ class "related-photos" ]
+            (List.map viewRelatedPhoto photo.relatedUrls)
+        ]
+
 type alias Model =
     { selectedPostUrl : Maybe String
     , posts : Dict String Post
@@ -63,7 +75,7 @@ view model =
         selectedPhoto =
             case Maybe.andThen photoByUrl model.selectedPhotoUrl of
                 Just photo ->
-                    viewSelectedPhoto photo
+                    viewSelectedPost photo
 
                 Nothing ->
                     text ""
