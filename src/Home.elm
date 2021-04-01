@@ -2,6 +2,7 @@ module Home exposing (Model, Msg, init, update, view)
 
 import Dict exposing (Dict)
 import Html exposing (..)
+import Html.Attributes exposing (class, href, src)
 import Http
 import Json.Decode as Decode exposing (Decoder, int, list, string)
 import Json.Decode.Pipeline exposing (required)
