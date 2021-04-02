@@ -65,6 +65,31 @@ init selectedTitle =
         }
     )
 
+viewPost : FolderPath -> Folder -> Html Msg
+viewPost path (Folder folder) =
+    let
+        viewSubfolder : Int -> Folder -> Html Msg
+        viewSubfolder index subfolder =
+            viewFolder (appendIndex index path) subfolder
+
+        folderLabel =
+            label [ onClick (ClickedFolder path) ] [ text folder.name ]
+    in
+    if folder.expanded then
+        let
+            contents =
+                List.append
+                    (List.indexedMap viewSubfolder folder.subfolders)
+                    (List.map viewPhoto folder.photoUrls)
+        in
+        div [ class "folder expanded" ]
+            [ folderLabel
+            , div [ class "contents" ] contents
+            ]
+
+    else
+        div [ class "folder collapsed" ] [ folderLabel ]
+
 view : Model -> Html Msg
 view model =
     let
@@ -82,8 +107,8 @@ view model =
                     text ""
     in
     div [ class "content" ]
-        [ div [ class "folders" ]
-            [ viewFolder End model.root
+        [ div [ class "posts" ]
+            [ viewPost End model.root
             ]
         , div [ class "selected-photo" ] [ selectedPhoto ]
         ]
