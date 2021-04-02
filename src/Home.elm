@@ -7,6 +7,9 @@ import Http
 import Json.Decode as Decode exposing (Decoder, int, list, string)
 import Json.Decode.Pipeline exposing (required)
 
+type PostPath
+    = End
+
 type alias Post =
     { image_url : String
     , image_alt : String
