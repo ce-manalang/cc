@@ -68,7 +68,7 @@ init selectedTitle =
         }
     )
 
-viewPost : FolderPath -> Folder -> Html Msg
+viewPost : PostPath -> Folder -> Html Msg
 viewPost path (Folder folder) =
     let
         viewSubfolder : Int -> Folder -> Html Msg
