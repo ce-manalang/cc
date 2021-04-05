@@ -68,15 +68,15 @@ init selectedTitle =
         }
     )
 
-viewPost : PostPath -> Folder -> Html Msg
-viewPost path (Folder folder) =
+viewPost : PostPath -> Post -> Html Msg
+viewPost path (Post folder) =
     let
-        viewSubfolder : Int -> Folder -> Html Msg
+        viewSubfolder : Int -> Post -> Html Msg
         viewSubfolder index subfolder =
-            viewFolder (appendIndex index path) subfolder
+            viewPost (appendIndex index path) subfolder
 
         folderLabel =
-            label [ onClick (ClickedFolder path) ] [ text folder.name ]
+            label [ onClick (ClickedPost path) ] [ text folder.name ]
     in
     if folder.expanded then
         let
