@@ -7,10 +7,8 @@ import Http
 import Json.Decode as Decode exposing (Decoder, int, list, string)
 import Json.Decode.Pipeline exposing (required)
 
-type PostPath
-    = End
-
-type alias Post =
+type Post
+  = Post
     { image_url : String
     , image_alt : String
     , post_url : String
@@ -18,6 +16,9 @@ type alias Post =
     , post_title : String
     , post_short_desc : String
     }
+
+type PostPath
+    = End
 
 type Msg
     = ClickPost String
@@ -69,7 +70,7 @@ init selectedTitle =
     )
 
 viewPost : PostPath -> Post -> Html Msg
-viewPost path (Post folder) =
+viewPost path (Post post) =
     let
         viewSubfolder : Int -> Post -> Html Msg
         viewSubfolder index subfolder =
