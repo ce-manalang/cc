@@ -69,6 +69,15 @@ init selectedTitle =
         }
     )
 
+appendIndex : Int -> FolderPath -> FolderPath
+appendIndex index path =
+    case path of
+        End ->
+            Subfolder index End
+
+        Subfolder subfolderIndex remainingPath ->
+            Subfolder subfolderIndex (appendIndex index remainingPath)
+
 viewPost : PostPath -> Post -> Html Msg
 viewPost path (Post post) =
     let
