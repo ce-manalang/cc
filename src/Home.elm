@@ -86,8 +86,6 @@ viewPost path (Post post) =
         viewSubfolder index subfolder =
             viewPost (appendIndex index path) subfolder
 
-        folderLabel =
-            label [ onClick (ClickedPost path) ] [ text folder.name ]
     in
     if folder.expanded then
         let
