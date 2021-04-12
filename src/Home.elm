@@ -82,25 +82,15 @@ appendIndex index path =
 viewPost : PostPath -> Post -> Html Msg
 viewPost path (Post post) =
     let
-        viewSubfolder : Int -> Post -> Html Msg
-        viewSubfolder index subfolder =
-            viewPost (appendIndex index path) subfolder
-
+        contents =
+            List.append
+                (List.map viewPost post.photoUrls)
     in
-    if folder.expanded then
-        let
-            contents =
-                List.append
-                    (List.indexedMap viewSubfolder folder.subfolders)
-                    (List.map viewPhoto folder.photoUrls)
-        in
-        div [ class "folder expanded" ]
-            [ folderLabel
-            , div [ class "contents" ] contents
-            ]
+    div [ class "post expanded" ]
+        [ postLabel
+        , div [ class "contents" ] contents
+        ]
 
-    else
-        div [ class "folder collapsed" ] [ folderLabel ]
 
 view : Model -> Html Msg
 view model =
