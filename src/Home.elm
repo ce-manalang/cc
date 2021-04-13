@@ -24,6 +24,7 @@ type PostPath
 type Msg
     = ClickPost String
     | GotInitialModel (Result Http.Error Model)
+    | ClickedPost PostPath
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -36,6 +37,9 @@ update msg model =
 
         GotInitialModel (Err _) ->
             ( model, Cmd.none )
+
+        ClickedPost path ->
+            ( { model | root = toggleExpanded path model.root }, Cmd.none )
 
 viewSelectedPost : Photo -> Html Msg
 viewSelectedPost photo =
@@ -82,6 +86,8 @@ appendIndex index path =
 viewPost : PostPath -> Post -> Html Msg
 viewPost path (Post post) =
     let
+        postLabel =
+            label [ onClick (ClickedPost path) ] [ text post.title ]
         contents =
             List.append
                 (List.map viewPost post.photoUrls)
