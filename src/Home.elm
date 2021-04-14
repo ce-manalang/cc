@@ -74,7 +74,7 @@ init selectedTitle =
         }
     )
 
-appendIndex : Int -> FolderPath -> FolderPath
+appendIndex : Int -> PostPath -> PostPath
 appendIndex index path =
     case path of
         End ->
