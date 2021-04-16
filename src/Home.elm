@@ -21,6 +21,11 @@ type Post
 type PostPath
     = End
 
+type alias Photo =
+    { title : String
+    , url : String
+    }
+
 type Msg
     = ClickPost String
     | GotInitialModel (Result Http.Error Model)
