@@ -26,6 +26,10 @@ type alias Photo =
     , url : String
     }
 
+urlPrefix : String
+urlPrefix =
+    "http://elm-in-action.com/"
+
 type Msg
     = ClickPost String
     | GotInitialModel (Result Http.Error Model)
