@@ -30,6 +30,16 @@ urlPrefix : String
 urlPrefix =
     "http://elm-in-action.com/"
 
+viewRelatedPhoto : String -> Html Msg
+viewRelatedPhoto name =
+    let
+        url =
+            urlPrefix ++ "photos/" ++ name ++ "/thumb"
+    in
+    div [ class "related-photo", onClick (ClickPhoto name) ]
+        [ img [ src url ] []
+        ]
+
 type Msg
     = ClickPost String
     | GotInitialModel (Result Http.Error Model)
