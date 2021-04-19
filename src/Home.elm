@@ -58,7 +58,7 @@ update msg model =
             ( model, Cmd.none )
 
         ClickedPost path ->
-            ( { model | root = toggleExpanded path model.root }, Cmd.none )
+            ( { model | root = path }, Cmd.none )
 
 viewSelectedPost : Photo -> Html Msg
 viewSelectedPost photo =
