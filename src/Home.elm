@@ -30,13 +30,13 @@ urlPrefix : String
 urlPrefix =
     "http://elm-in-action.com/"
 
-viewRelatedPhoto : String -> Html Msg
-viewRelatedPhoto name =
+viewRelatedPost : String -> Html Msg
+viewRelatedPost name =
     let
         url =
-            urlPrefix ++ "photos/" ++ name ++ "/thumb"
+            urlPrefix ++ "posts/" ++ name
     in
-    div [ class "related-photo", onClick (ClickPhoto name) ]
+    div [ class "related-post", onClick (ClickPost name) ]
         [ img [ src url ] []
         ]
 
@@ -68,8 +68,8 @@ viewSelectedPost photo =
         , img [ src (urlPrefix ++ "photos/" ++ photo.url ++ "/full") ] []
         , span [] [ text (String.fromInt photo.size ++ "KB") ]
         , h3 [] [ text "Related" ]
-        , div [ class "related-photos" ]
-            (List.map viewRelatedPhoto photo.relatedUrls)
+        , div [ class "related-posts" ]
+            (List.map viewRelatedPost photo.relatedUrls)
         ]
 
 type alias Model =
