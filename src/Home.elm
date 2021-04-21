@@ -97,7 +97,7 @@ viewPost : PostPath -> Post -> Html Msg
 viewPost path (Post post) =
     let
         postLabel =
-            label [ onClick (ClickedPost path) ] [ text post.title ]
+            label [ onClick (ClickedPost path) ] [ text post.post_title ]
         contents =
             List.append
                 (List.map viewPost post.photoUrls)
