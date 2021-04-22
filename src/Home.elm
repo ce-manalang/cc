@@ -98,13 +98,9 @@ viewPost path (Post post) =
     let
         postLabel =
             label [ onClick (ClickedPost path) ] [ text post.post_title ]
-        contents =
-            List.append
-                (List.map viewPost post.photoUrls)
     in
     div [ class "post expanded" ]
         [ postLabel
-        , div [ class "contents" ] contents
         ]
 
 
