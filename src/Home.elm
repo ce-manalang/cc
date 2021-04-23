@@ -66,7 +66,6 @@ viewSelectedPost photo =
         [ class "selected-photo" ]
         [ h2 [] [ text photo.title ]
         , img [ src (urlPrefix ++ "photos/" ++ photo.url ++ "/full") ] []
-        , span [] [ text (String.fromInt photo.size ++ "KB") ]
         , h3 [] [ text "Related" ]
         , div [ class "related-posts" ]
             (List.map viewRelatedPost photo.relatedUrls)
