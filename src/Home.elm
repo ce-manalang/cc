@@ -66,9 +66,6 @@ viewSelectedPost photo =
         [ class "selected-photo" ]
         [ h2 [] [ text photo.title ]
         , img [ src (urlPrefix ++ "photos/" ++ photo.url ++ "/full") ] []
-        , h3 [] [ text "Related" ]
-        , div [ class "related-posts" ]
-            (List.map viewRelatedPost photo.relatedUrls)
         ]
 
 type alias Model =
