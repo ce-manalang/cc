@@ -103,18 +103,9 @@ viewPost path (Post post) =
 view : Model -> Html Msg
 view model =
     let
-        photoByUrl : String -> Maybe Post
-        photoByUrl url =
-            Dict.get url model.photos
-
         selectedPhoto : Html Msg
         selectedPhoto =
-            case Maybe.andThen photoByUrl model.selectedPhotoUrl of
-                Just photo ->
-                    viewSelectedPost photo
-
-                Nothing ->
-                    text ""
+            text ""
     in
     div [ class "content" ]
         [ div [ class "posts" ]
