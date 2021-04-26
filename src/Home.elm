@@ -71,6 +71,7 @@ viewSelectedPost photo =
 type alias Model =
     { selectedPostUrl : Maybe String
     , posts : Dict String Post
+    , root : Post
     }
 
 initialModel : Model
