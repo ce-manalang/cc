@@ -149,9 +149,10 @@ postDecoder =
         |> required "title" string
 
 postFromJson : String -> Dict String Post -> List Post -> Post
-postFromJson title posts =
+postFromJson image_url post_title posts =
     Post
-        { title = title
+        { image_url = image_url
+        , post_title = post_title
         }
 
 modelPostsDecoder : Decoder (Dict String Post)
