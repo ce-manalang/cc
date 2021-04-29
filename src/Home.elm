@@ -149,10 +149,14 @@ postDecoder =
         |> required "title" string
 
 postFromJson : String -> Dict String Post -> List Post -> Post
-postFromJson image_url post_title posts =
+postFromJson image_alt image_url post_date post_short_desc post_title post_url posts =
     Post
-        { image_url = image_url
+        { image_alt = image_alt
+        , image_url = image_url
+        , post_date = post_date
+        , post_short_desc = post_short_desc
         , post_title = post_title
+        , post_url = post_url
         }
 
 modelPostsDecoder : Decoder (Dict String Post)
