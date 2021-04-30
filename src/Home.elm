@@ -10,12 +10,8 @@ import Json.Decode.Pipeline exposing (required)
 
 type Post
   = Post
-    { image_url : String
-    , image_alt : String
-    , post_url : String
-    , post_date : String
+    { post_url : String
     , post_title : String
-    , post_short_desc : String
     }
 
 type PostPath
@@ -143,19 +139,15 @@ fromPairs pairs =
         |> List.map finishPost
         |> Dict.fromList
 
-postDecoder : Decoder Post
+postDecoder : Decoder (String -> List Post -> Post)
 postDecoder =
     Decode.succeed postFromJson
         |> required "title" string
 
-postFromJson : String -> Dict String Post -> List Post -> Post
-postFromJson image_alt image_url post_date post_short_desc post_title post_url posts =
+postFromJson : String -> String -> List Post -> Post
+postFromJson post_title post_url posts =
     Post
-        { image_alt = image_alt
-        , image_url = image_url
-        , post_date = post_date
-        , post_short_desc = post_short_desc
-        , post_title = post_title
+        { post_title = post_title
         , post_url = post_url
         }
 
