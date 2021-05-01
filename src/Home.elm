@@ -74,7 +74,7 @@ initialModel : Model
 initialModel =
     { selectedPostUrl = Nothing
     , posts = Dict.empty
-    , root = Post { name = "Loading...", postUrls = [] }
+    , root = Post { post_title = "Loading...", post_url = "" }
     }
 
 init : Maybe String -> ( Model, Cmd Msg )
